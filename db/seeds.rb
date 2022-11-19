@@ -8,7 +8,7 @@
 Idea.destroy_all
 Review.destroy_all
 User.destroy_all
-
+Like.destroy_all
 PASSWORD = "123"
 
 super_user = User.create(

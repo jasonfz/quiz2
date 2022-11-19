@@ -5,10 +5,25 @@
 <p><small>Posted: <%= time_ago_in_words(@idea.created_at) %> ago</small></p>
 
 <small>Created by: <%= @idea.user.full_name %></small>
+
+<small>Liked by: <%= @idea.likes.count %> users</small>   
+
 <% if can? :crud, @post %>
   <%= button_to 'Edit', edit_idea_path(@idea), method: :get %>
   <%= button_to 'Delete', idea_path(@idea), method: :delete, data: {turbo_confirm: "Are you sure?"} %>
   <% end %>
+
+
+<br>
+
+<small>
+  <% if @like.present? %>
+      <%= button_to "liked", like_path(@like), method: :delete %>
+    <% else %>
+      <%= button_to "Like", idea_likes_path(@idea), method: :post %>
+    <% end %>
+</small>
+
 <ul>
   <% @reviews.each do |review| %>
 
@@ -17,7 +32,7 @@
       <small>
         Reviewed <%= time_ago_in_words(review.created_at)%> ago by <%= review.user.full_name %>
       </small>
-<% if can? :crud, comment %>
+<% if can? :crud, review %>
        <%= link_to "Delete", idea_review_path(@idea.id, review.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
        <% end %>
     </li>

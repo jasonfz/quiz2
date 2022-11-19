@@ -4,6 +4,12 @@
 <% @ideas.each do |idea| %>
   <div>
     <h2><%= link_to idea.title, idea %></h2>
-    
+  </div>
+  <div>
+      <small>By <%= idea.user.full_name %></small>
+  </div>
+
+  <div>
+<small>Likes: <%= idea.likes.count %> </small>   
   </div>
 <% end %>

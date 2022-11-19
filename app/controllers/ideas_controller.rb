@@ -27,12 +27,15 @@ class IdeasController < ApplicationController
 
 def index
     @ideas = Idea.order(created_at: :desc)
+    # @like = @idea.likes.find_by(user: current_user)
   end
   
    
   def show
     @reviews = @idea.reviews.order(created_at: :desc)
     @review = Review.new
+    @like = @idea.likes.find_by(user: current_user)
+
   end
 
 #===================UPDATE==========================
@@ -59,12 +62,14 @@ end
 
 
 
+  def liked
+    @ideas = current_user.liked_ideas
+  end
 
 
 
 
-
-
+ 
 
 
 
