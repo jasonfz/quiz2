@@ -11,6 +11,39 @@
   </head>
 
   <body>
+
+   <nav>
+    <span><h1><%= link_to "Idea Factory", root_path %></h1></span>
+  
+    <h3> <%= link_to "New Idea", new_idea_path %></h3>
+
+
+<%if(user_signed_in?) %>
+     <h5>Hello, <%= current_user.full_name %></h5>
+
+<%#= link_to "update user info", edit_user_path(current_user, @user)%>
+  
+ <%#= button_to "update user info", edit_user_path(current_user), method: :get %>
+
+
+ <span><h3> <%= button_to "Log out", session_path, method: :delete %></h3></span>
+       <% else %>
+    <span><h3> <%= link_to "Sign In", new_session_path %></h3></span>
+ 
+<span><h3> <%= link_to "Sign Up", new_user_path %></h3></span>
+
+     <% end %>
+
+ 
+ 
+
+
+
+    
+    </nav >
+
+
+
     <%= yield %>
   </body>
 </html>
